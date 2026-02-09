@@ -6,6 +6,19 @@ Read `references/claude-code-artifacts.md` for the exact format specifications o
 
 Determine what the user wants to create based on their request. If unclear, ask.
 
+## Importing From an Existing Project
+
+If the user provides a file path as an argument (e.g., `/create F:\Projects\NodeToCode\.claude\commands\build-check.md`), they want to **import an existing artifact from another project into this kit**:
+
+1. Read the file at the provided path
+2. Determine what type of artifact it is (command, agent, skill, prompt, hook, etc.) based on its format and location
+3. Ask which domain it belongs to in this kit
+4. Adapt the content if needed to be portable and kit-appropriate (remove project-specific hardcoded paths, generalize where sensible while preserving the useful specifics)
+5. Write it to the correct location under `domains/<domain>/` following the format specs
+6. Summarize what was imported and what was adapted
+
+If the path points to a directory (e.g., a skill directory with SKILL.md + supporting files), import the entire directory.
+
 ## Creating a Command
 
 Target: `domains/<domain>/commands/<name>.md`
