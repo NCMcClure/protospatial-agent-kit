@@ -1,0 +1,28 @@
+{
+  "metadata": {
+    "created": "2025-02-05T00:00:00Z",
+    "description": "Feature tracking for autonomous development loop",
+    "version": "1.0",
+    "notes": "The agent can ONLY modify the 'passes' field after verification"
+  },
+  "features": [
+    {
+      "id": "feature-001",
+      "name": "Example feature 1",
+      "description": "Detailed description of what this feature does",
+      "passes": false,
+      "priority": "high",
+      "dependencies": [],
+      "notes": ""
+    },
+    {
+      "id": "feature-002",
+      "name": "Example feature 2",
+      "description": "Another feature description",
+      "passes": false,
+      "priority": "medium",
+      "dependencies": ["feature-001"],
+      "notes": ""
+    }
+  ]
+}

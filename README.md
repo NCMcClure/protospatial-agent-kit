@@ -10,6 +10,7 @@ A personal agent toolkit for a senior XR/ML technical designer. Clone it anywher
 |--------|----------|-------------|
 | [UE5 C++](domains/ue5-cpp/) | 2 agents, 2 commands, 2 prompts | UE5 plugin/systems C++ — code review, class architecture, conventions reference |
 | [Technical Design](domains/technical-design/) | 2 agents, 2 commands, 2 prompts | Design-engineering bridge — spec translation, prototype planning, vocabulary mapping |
+| [Agent Workflows](domains/agent-workflows/) | 1 skill | Autonomous agentic loops — Ralph Wiggum methodology, session persistence, hooks, circuit breakers |
 
 ### Templates
 

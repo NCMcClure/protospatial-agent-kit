@@ -1,0 +1,90 @@
+# Progress Notes
+
+## Project: [Project Name]
+## Started: [Date]
+## Goal: [Brief description of what this loop is building]
+
+---
+
+## Latest Session
+
+### Date: [ISO timestamp]
+### Duration: [X minutes]
+
+**Completed:**
+- [Feature/task completed with verification status]
+
+**In Progress:**
+- [Current work item and status]
+
+**Blocked:**
+- [Any blockers with details]
+
+**Next Steps:**
+1. [Specific next action]
+2. [Following action]
+
+---
+
+## Files Investigated
+
+Track files you've examined to prevent amnesia loops:
+
+| File | Findings | Status |
+|------|----------|--------|
+| src/example.ts | Contains auth logic, line 45 has bug | Fixed |
+| lib/utils.js | Helper functions, no issues | Reviewed |
+
+---
+
+## Decisions Made
+
+Document important decisions and rationale:
+
+### Decision: [Title]
+- **Date:** [When]
+- **Context:** [Why this came up]
+- **Decision:** [What was decided]
+- **Rationale:** [Why this approach]
+
+---
+
+## Constraints Discovered
+
+List constraints that must be maintained:
+
+- **Technical:** [e.g., Must support Node 18+]
+- **Business:** [e.g., API must remain backward compatible]
+- **Testing:** [e.g., All features need integration tests]
+
+---
+
+## Session History
+
+### Session 1 - [Date]
+- Completed: Initial setup, feature-001
+- Notes: [Key observations]
+
+### Session 2 - [Date]
+- Completed: feature-002, feature-003
+- Notes: [Key observations]
+
+---
+
+## Error Patterns
+
+Document errors encountered to avoid repeating:
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| [Error message] | [Root cause] | [How to fix] |
+
+---
+
+## Handoff Notes
+
+**For Next Session:**
+- Read this file first
+- Check feature_list.json for current status
+- Start with: [specific instruction]
+- Avoid: [known pitfalls]

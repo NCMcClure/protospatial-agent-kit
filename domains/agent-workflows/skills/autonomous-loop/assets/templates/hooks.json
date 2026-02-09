@@ -1,0 +1,60 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"$CLAUDE_TOOL_ARG_command\" | grep -qE '(rm -rf /|sudo rm|chmod -R 777)' && echo '{\"decision\":\"block\",\"reason\":\"Dangerous command blocked\"}' || echo '{\"decision\":\"allow\"}'",
+            "_comment": "Block potentially dangerous bash commands"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "prettier --write \"$CLAUDE_TOOL_ARG_file_path\" 2>/dev/null || true",
+            "_comment": "Auto-format files after editing"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "npm test -- --findRelatedTests \"$CLAUDE_TOOL_ARG_file_path\" --passWithNoTests 2>/dev/null || true",
+            "_comment": "Run related tests after file changes"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 scripts/validate_completion.py",
+            "_comment": "Validate completion before allowing session to end"
+          }
+        ]
+      }
+    ]
+  },
+  "_documentation": {
+    "PreToolUse": "Fires before tool execution. Return {decision: 'block', reason: '...'} to prevent.",
+    "PostToolUse": "Fires after tool completion. Use for formatting, testing, logging.",
+    "Stop": "Fires when Claude finishes. Return {decision: 'block', reason: '...'} to prevent exit.",
+    "exit_codes": {
+      "0": "Success, continue execution",
+      "2": "Blocking error, show stderr to Claude",
+      "other": "Non-blocking error, log and continue"
+    }
+  }
+}
