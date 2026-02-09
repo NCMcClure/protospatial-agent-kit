@@ -1,0 +1,148 @@
+# AGENTS.md
+
+This file provides guidance to AI coding agents working in this repository.
+
+# {{PROJECT_NAME}} — Unreal Engine {{UE_VERSION}} Plugin
+
+# CRITICAL — START
+
+## UE5 Engine Source
+
+Run `/find-ue-source` to detect your UE installation and update this file.
+
+UE_SOURCE_PATH: [NOT CONFIGURED — run /find-ue-source]
+
+Use this path to search through engine source for research. NEVER modify files at this path.
+
+## Building
+
+Build through the Unreal Editor, via RunUAT, or with a project build script:
+
+**RunUAT (default):**
+```
+# Windows
+RunUAT.bat BuildPlugin -Plugin="[path to .uplugin]" -TargetPlatforms=Win64
+
+# Mac
+RunUAT.sh BuildPlugin -Plugin="[path to .uplugin]" -TargetPlatforms=Mac
+```
+
+**Build scripts (if present):**
+```powershell
+# Windows (build.ps1)
+.\build.ps1 -UEVersion {{UE_VERSION}}    # Build for target version
+.\build.ps1 -All                          # Build all detected versions
+.\build.ps1 -WhatIf                       # Preview detected UE installations
+```
+```bash
+# Mac/Linux (build.sh)
+./build.sh -v {{UE_VERSION}}              # Build for target version
+./build.sh --all                          # Build all detected versions
+./build.sh --whatif                       # Preview detected UE installations
+```
+
+Logs are saved to `BuildLogs/Build_<version>_<timestamp>.log` when using build scripts.
+
+Use `/build-check` to verify the project compiles.
+
+# CRITICAL — END
+
+## Overview
+
+{{PROJECT_NAME}} is an Unreal Engine {{UE_VERSION}} C++ plugin.
+
+<!-- Replace this line with a description of what this plugin does -->
+
+## Module Structure
+
+| Module | Type | Loading Phase | Description |
+|--------|------|---------------|-------------|
+| {{MODULE_NAME}} | {{MODULE_TYPE}} | PostEngineInit | Primary module |
+
+## Context Navigation
+
+For detailed information on specific areas of the codebase, navigate to the relevant context file:
+
+```
+Context/
+├── architecture/
+│   └── AGENTS-architecture.md    → Module structure, class hierarchy, key systems
+```
+
+Add more Context/ subdirectories as your project grows. Examples from mature projects:
+
+```
+├── subsystem-name/
+│   └── AGENTS-subsystem-name.md  → Subsystem-specific architecture and API
+├── development-workflow/
+│   └── AGENTS-development-workflow.md  → Build process, CI, IDE setup
+```
+
+### Quick Reference
+
+| Task | Context File |
+|------|--------------|
+| Module structure, key classes, settings | `Context/architecture/` |
+
+## Coding Conventions
+
+### Naming
+
+- **Type prefixes**: U (UObject), A (Actor), F (struct/non-UObject), E (enum), I (interface), T (template)
+- **Project prefix**: `{{PROJECT_PREFIX}}` — use consistently on all project classes (e.g., `U{{PROJECT_PREFIX}}MySubsystem`, `F{{PROJECT_PREFIX}}MyStruct`)
+- **PascalCase** for all type names, functions, and properties
+- **Boolean prefix**: `b` (e.g., `bIsEnabled`)
+- **Out parameter prefix**: `Out` (e.g., `OutResult`)
+
+### Headers
+
+```cpp
+#pragma once
+#include "CoreMinimal.h"
+// Other engine/project includes
+#include "ClassName.generated.h" // Always last
+```
+
+- Include what you use, forward-declare for pointers and references in headers
+- `.generated.h` is always the last include
+
+### Memory
+
+- `TObjectPtr<T>` for UPROPERTY UObject member pointers — never raw `T*` as members
+- `TSharedPtr<T>` / `TWeakPtr<T>` for non-UObject shared ownership
+- `TUniquePtr<T>` for non-UObject exclusive ownership
+- `NewObject<T>()` and `CreateDefaultSubobject<T>()` — never raw `new` for UObjects
+- `TEXT("literal")` for all string literals
+
+### Reflection
+
+- Every Blueprint-exposed `UPROPERTY` needs a `Category`
+- Every `BlueprintCallable` `UFUNCTION` needs a `Category`
+- `GENERATED_BODY()` in every reflected class/struct
+- `.generated.h` included last
+- No raw UObject pointers stored without `UPROPERTY` (invisible to GC)
+
+### Strings
+
+- `FName` — identifiers and keys (case-insensitive, fast comparison)
+- `FString` — mutable string manipulation
+- `FText` — user-facing display text (localizable)
+- Always use `TEXT()` macro for string literals
+
+## Common Tasks
+
+### Adding a New Class
+
+1. Create `.h` in `Source/Public/` and `.cpp` in `Source/Private/`
+2. Follow the header template above (`#pragma once`, `CoreMinimal.h` first, `.generated.h` last)
+3. Add `{{MODULE_NAME}}_API` export macro if the class needs cross-module access
+4. Add new module dependencies to `{{MODULE_NAME}}.Build.cs` (Public for headers, Private for .cpp-only)
+5. Build with `/build-check`
+
+### Adding a New Module
+
+1. Create module directory under `Source/`
+2. Add `[ModuleName].Build.cs` with dependency lists
+3. Add module interface class implementing `IModuleInterface`
+4. Register the module in `.uplugin` descriptor with Type and LoadingPhase
+5. Update the Module Structure table above

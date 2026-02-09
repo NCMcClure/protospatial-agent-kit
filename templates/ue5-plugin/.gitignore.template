@@ -22,7 +22,8 @@ Saved/
 Thumbs.db
 Desktop.ini
 
-# Claude Code local settings
+# Claude Code
+CLAUDE.md
 .claude/settings.local.json
 
 # Build and development

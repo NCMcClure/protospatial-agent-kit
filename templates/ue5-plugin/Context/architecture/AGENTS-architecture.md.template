@@ -1,0 +1,108 @@
+# {{PROJECT_NAME}} Architecture
+
+## Plugin Module: {{MODULE_NAME}}
+
+- **Type:** {{MODULE_TYPE}}
+- **Loading Phase:** PostEngineInit
+- **API Macro:** `{{MODULE_NAME}}_API`
+- **Source Layout:** `Source/Public/` (API surface), `Source/Private/` (implementations)
+
+## Module Entry Point
+
+`F{{MODULE_NAME}}Module` implements `IModuleInterface`:
+
+```cpp
+class F{{MODULE_NAME}}Module : public IModuleInterface
+{
+public:
+    virtual void StartupModule() override;
+    virtual void ShutdownModule() override;
+};
+```
+
+- `StartupModule()` — Register subsystems, bind delegates, initialize services
+- `ShutdownModule()` — Unregister, unbind, clean up (reverse order of startup)
+
+## Source Organization
+
+```
+Source/
+├── {{MODULE_NAME}}.Build.cs       # Module dependencies
+├── Public/                         # Headers exposed to other modules
+│   └── Core/                       # Module entry point, settings, core types
+└── Private/                        # Implementation files
+    └── Core/                       # Module implementation
+```
+
+Organize subdirectories by subsystem as the project grows:
+
+```
+├── Public/
+│   ├── Core/           # Module entry, settings, logging
+│   ├── Models/         # Data types, structs, enums
+│   └── Utils/          # Utility classes, helpers
+└── Private/
+    ├── Core/
+    ├── Models/
+    └── Utils/
+```
+
+## Plugin Descriptor
+
+`{{PROJECT_NAME}}.uplugin` key fields:
+
+| Field | Value |
+|-------|-------|
+| FriendlyName | {{PROJECT_NAME}} |
+| Module | {{MODULE_NAME}} ({{MODULE_TYPE}}, PostEngineInit) |
+| Platforms | Win64, Mac |
+
+## Key Classes
+
+Document major classes here as they are created. Example format:
+
+| Class | Base | Purpose |
+|-------|------|---------|
+| `F{{MODULE_NAME}}Module` | `IModuleInterface` | Plugin module entry point |
+
+## Settings
+
+If using `UDeveloperSettings` for plugin configuration:
+
+```cpp
+UCLASS(Config=Game, DefaultConfig, meta=(DisplayName="{{PROJECT_NAME}}"))
+class {{MODULE_NAME}}_API U{{PROJECT_PREFIX}}Settings : public UDeveloperSettings
+{
+    GENERATED_BODY()
+public:
+    // Access: GetDefault<U{{PROJECT_PREFIX}}Settings>()
+    // Shows in: Project Settings > Plugins > {{PROJECT_NAME}}
+};
+```
+
+## Dependencies
+
+Track module dependencies from `{{MODULE_NAME}}.Build.cs`:
+
+**Public** (types in your public headers):
+- `Core`, `CoreUObject`, `Engine`
+
+**Private** (types only in .cpp files):
+- Add as needed: `Slate`, `SlateCore`, `UnrealEd`, `ToolMenus`, `HTTP`, `Json`, etc.
+
+**Rule:** If a type appears in your public headers, its module is a PublicDependency. If only in .cpp files, it's a PrivateDependency.
+
+## Logging
+
+```cpp
+// In {{MODULE_NAME}}.h or a dedicated log header:
+DECLARE_LOG_CATEGORY_EXTERN(Log{{PROJECT_PREFIX}}, Log, All);
+
+// In {{MODULE_NAME}}.cpp:
+DEFINE_LOG_CATEGORY(Log{{PROJECT_PREFIX}});
+
+// Usage:
+UE_LOG(Log{{PROJECT_PREFIX}}, Display, TEXT("Message here"));
+UE_LOG(Log{{PROJECT_PREFIX}}, Warning, TEXT("Warning: %s"), *SomeString);
+UE_LOG(Log{{PROJECT_PREFIX}}, Error, TEXT("Error: %d"), ErrorCode);
+```
