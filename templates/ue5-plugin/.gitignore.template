@@ -1,0 +1,54 @@
+# UE5 Build Artifacts
+Binaries/
+Intermediate/
+DerivedDataCache/
+Build/
+Saved/
+
+# UE5 Generated
+*_BuiltData.uasset
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Build and development
+BuildLogs/
+*.log
+
+# Compiled objects
+*.slo
+*.lo
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+
+# Python (if used for scripting/tooling)
+__pycache__/
+*.pyc
+.venv/
+
+# Node (if used for scripting/tooling)
+node_modules/
+
+# Local environment
+.env
+.mcp.json
