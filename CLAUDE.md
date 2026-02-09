@@ -14,7 +14,7 @@ Each domain is self-contained under `domains/<name>/` with its own agents, comma
 |--------|------|-------|
 | UE5 C++ | `domains/ue5-cpp/` | Unreal Engine 5 plugin and systems development in C++ |
 | Technical Design | `domains/technical-design/` | Design-engineering bridge work, prototyping, spec translation |
-| Agent Workflows | `domains/agent-workflows/` | Autonomous loop orchestration, session persistence, hook patterns |
+| Agent Workflows | `domains/agent-workflows/` | Autonomous loop orchestration, session persistence, hook patterns, progressive disclosure memory systems |
 
 Each domain contains:
 - `DOMAIN.md` — Scope, conventions, key concepts
