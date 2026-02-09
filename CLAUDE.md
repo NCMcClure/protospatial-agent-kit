@@ -66,15 +66,17 @@ Use `/create` (or just describe what you want) to add new content to the kit. Th
 
 ### What Goes Where
 
+All created content lives under `domains/` or `templates/` — never in this kit's `.claude/` directory (that's reserved for `/extract` and `/create` only). These artifacts are portable: they exist here so `/extract` can deploy them into target projects.
+
 | You want to create... | It goes in... |
 |----------------------|---------------|
 | Agent (specialist role) | `domains/<domain>/agents/<name>.md` |
-| Command (action/verb) | `domains/<domain>/commands/<name>.md` or `.claude/commands/<name>.md` (kit-level) |
+| Command (action/verb) | `domains/<domain>/commands/<name>.md` |
 | Prompt (reference knowledge) | `domains/<domain>/prompts/<name>.md` |
-| Skill (knowledge bundle) | `.claude/skills/<name>/SKILL.md` |
-| Hook (automatic trigger) | `.claude/settings.json` or `.claude/settings.local.json` |
+| Skill (knowledge bundle) | `domains/<domain>/skills/<name>/SKILL.md` |
+| Hook (automatic trigger) | `domains/<domain>/hooks/<name>.md` (documented pattern with JSON snippet) |
 | Domain (new specialty area) | `domains/<name>/` with DOMAIN.md + agents/ + commands/ + prompts/ |
-| Template (project scaffold) | `templates/<name>/` with TEMPLATE.md + .template files |
+| Template (project scaffold) | `templates/<name>/` with TEMPLATE.md + .template files (templates CAN contain `.claude/` structure since that's what gets deployed) |
 
 ### Artifact Format Quick Reference
 
@@ -108,8 +110,8 @@ When creating or modifying content in this kit:
 - Directory names are kebab-case
 - Templates use `.template` extension for files that need variable substitution
 - Template variables use `{{VARIABLE_NAME}}` syntax
-- Domain agents/commands/prompts live under `domains/`, not under `.claude/`
-- Root `.claude/commands/` contains only kit-management commands
+- **All portable content lives under `domains/` and `templates/`** — agents, commands, prompts, skills, hooks
+- **Root `.claude/commands/` contains ONLY kit-management commands** (`/extract` and `/create`) — never domain content
 
 ## Working in This Kit
 
