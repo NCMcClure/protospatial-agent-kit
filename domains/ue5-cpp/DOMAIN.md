@@ -101,7 +101,13 @@ private:
 - `ensureMsgf(expr, fmt, ...)` — ensure with formatted message
 - `verify(expr)` — like check but expression always evaluated (even in shipping builds)
 
+## Skills
+
+| Skill | Path | Purpose |
+|-------|------|---------|
+| UE5 Slate UI | `skills/ue-slate-ui/` | Atomic design methodology adapted for Slate's C++ composition model — five-level widget hierarchy, design tokens, style architecture, composition patterns, refactoring playbook |
+
 ## Cross-Domain Connections
 
-- **Technical Design**: Editor tooling and Slate/UMG work often starts from design specs. The spec-translator agent can produce implementation-ready technical specs for UI components.
+- **Technical Design**: Editor tooling and Slate/UMG work often starts from design specs. The spec-translator agent can produce implementation-ready technical specs for UI components. The `atomic-design` skill in the technical-design domain provides the foundational methodology that the `ue-slate-ui` skill adapts for Slate.
 - **Templates**: The `ue5-plugin` template provides a ready-to-go project scaffold following these conventions.
