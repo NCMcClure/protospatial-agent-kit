@@ -1,6 +1,6 @@
 # Protospatial Agent Kit
 
-A personal agent toolkit for a senior XR/ML technical designer. Clone it anywhere, open Claude Code, tell it what you need — it extracts existing tooling to target projects and creates new Claude Code artifacts with consistent standards.
+A personal agent toolkit for technical designers spanning a variety of different machine learning, software engineering, design, and realtime 3D use-cases. Clone it anywhere, open Claude Code, tell it what you need — it extracts existing tooling to target projects and creates new Claude Code artifacts with consistent standards.
 
 ## What's Inside
 
