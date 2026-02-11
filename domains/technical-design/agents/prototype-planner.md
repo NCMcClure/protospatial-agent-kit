@@ -1,5 +1,5 @@
 ---
-agentName: prototype-planner
+name: prototype-planner
 description: Plans prototyping efforts by determining appropriate fidelity level and fastest path to validation
 ---
 

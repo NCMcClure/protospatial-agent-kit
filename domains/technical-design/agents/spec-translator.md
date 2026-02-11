@@ -1,5 +1,5 @@
 ---
-agentName: spec-translator
+name: spec-translator
 description: Translates between design language and engineering specifications bidirectionally
 ---
 

@@ -1,5 +1,5 @@
 ---
-agentName: ue5-header-architect
+name: ue5-header-architect
 description: Designs UE5 C++ class headers, module structure, and plugin architecture
 ---
 

@@ -1,5 +1,5 @@
 ---
-agentName: ue5-code-reviewer
+name: ue5-code-reviewer
 description: Reviews UE5 C++ code for correctness, UE5 idiom compliance, and performance
 ---
 

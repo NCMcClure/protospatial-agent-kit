@@ -64,7 +64,7 @@ Agents are specialist definitions with narrow scope. They define who Claude shou
 
 ```markdown
 ---
-agentName: <kebab-case-name>
+name: <kebab-case-name>
 description: <one-line description of the agent's role>
 ---
 
@@ -87,7 +87,7 @@ You are a [specialist role description]. [Context for when/how this agent operat
 
 ### Rules
 
-- **Frontmatter is required.** Use `agentName` (camelCase key, kebab-case value) and `description`.
+- **Frontmatter is required.** Use `name` (kebab-case value) and `description`.
 - **Narrow scope.** An agent that "helps with UE5" is useless. An agent that "reviews UE5 C++ for reflection macro correctness" is useful.
 - **Structured output.** Always define what the agent produces. Reviews have severity levels. Designs have section templates. Analyses have structured findings.
 - **Quality criteria.** Define what good output looks like so the agent can self-evaluate.
@@ -97,7 +97,7 @@ You are a [specialist role description]. [Context for when/how this agent operat
 
 ```markdown
 ---
-agentName: spec-translator
+name: spec-translator
 description: Translates between design language and engineering specifications bidirectionally
 ---
 
@@ -166,7 +166,7 @@ description: >
 
 ### Rules
 
-- **Frontmatter uses `name`** (not `agentName`). Also requires `description`.
+- **Frontmatter uses `name`** and `description`.
 - **Directory per skill.** Skills live in subdirectories, not as flat files.
 - **SKILL.md is the entry point.** Claude reads this first. It can reference other files in the same directory.
 - **Knowledge, not instructions.** Skills provide expertise that makes Claude better at a class of work. They're not step-by-step procedures (that's what commands are for).

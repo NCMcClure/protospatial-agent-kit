@@ -1,5 +1,5 @@
 ---
-agentName: memory-architect
+name: memory-architect
 description: Designs progressive disclosure memory structures for Claude Code projects based on project domain and knowledge needs
 ---
 

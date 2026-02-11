@@ -84,7 +84,7 @@ All created content lives under `domains/` or `templates/` — never in this kit
 | Type | Frontmatter | Key Fields | Special Markers |
 |------|-------------|------------|-----------------|
 | Command | None | — | `$ARGUMENTS` at end |
-| Agent | YAML required | `agentName`, `description` | — |
+| Agent | YAML required | `name`, `description` | — |
 | Skill | YAML required | `name`, `description` | SKILL.md entry point |
 | Prompt | None | — | — |
 | Hook | JSON in settings | event, matcher, command | — |
